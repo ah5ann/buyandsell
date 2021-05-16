@@ -56,47 +56,90 @@
                     <tr>
                         <td><a href="">My Settings</a></td>
                     </tr>
+                    <tr>
+                        <td><form action="{{route('logout')}}" method="post">@csrf <button type="submit" class="btn btn-link"><i class="fa fa-sign-out"></i> Logout</button></form></td>
+                    </tr>
                 </table>
             </div>
         </div>
         <div class="col-sm-9">
             <h5 style="padding-top:10px; margin-top:20px;"> Add New Product</h5>
             <hr>
-            <div class="form-group">
-                <label>Type</label>
-                <select name="type" class="form-control" required>
-                    <option value="Sell">Sell</option>
-                    <option value="Buy">Buy</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Title</label>
-                <input type="text" class="form-control" name="title">
-            </div>
-            <div class="form-group">
-                <label>Description</label>
-                <textarea name="description" class="form-control" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label>Price</label>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">$</span>
-                    </div>
-                    <input type="number" name="price" class="form-control" aria-label="Amount (to the nearest dollar)">
-                    <div class="input-group-append">
-                        <span class="input-group-text">.00</span>
-                    </div>
+            <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">@csrf
+                <div class="form-group">
+                    <label>Type</label>
+                    <select name="type" class="form-control" required>
+                        <option value="Sell">Sell</option>
+                        <option value="Buy">Buy</option>
+                    </select>
+                    @if ($errors->has('type'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('type') }}</strong>
+                        </span>
+                    @endif
                 </div>
-            </div>
-            <div class="form-group">
-                <label>Image</label>
-                <input type="file" name="image" class="form-control">
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-success">Submit</button>
-                <a href="{{route('profile')}}" class="btn btn-danger">Cancel</a>
-            </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select name="category" class="form-control" required>
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('category'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('category') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" class="form-control" name="title">
+                    @if ($errors->has('title'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('title') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" class="form-control" rows="3"></textarea>
+                    @if ($errors->has('description'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('description') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label>Price</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="number" name="price" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        <div class="input-group-append">
+                            <span class="input-group-text">.00</span>
+                        </div>
+                    </div>
+                    @if ($errors->has('price'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('price') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label>Image</label>
+                    <input type="file" name="image" class="form-control">
+                    @if ($errors->has('image'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('image') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    <a href="{{route('profile')}}" class="btn btn-danger">Cancel</a>
+                </div>
+            </form>
         </div>
     </div>
 </div>

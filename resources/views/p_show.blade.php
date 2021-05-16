@@ -54,15 +54,13 @@
     </div>
     <div class="row">
         <div class="col-sm-12 col-md-5 col-lg-5">
-            <img style="width:100%" src="https://cdn.mos.cms.futurecdn.net/ahevYTh9pWRzkNPF85MQhb-1200-80.jpg">
+            <img style="width:100%" src="{{url('public/uploads/'.$product->image)}}">
         </div>
         <div class="col-sm-12 col-md-7 col-lg-7">
-            <h3>Product Title</h3>
+            <h3>{{$product->title}}</h3>
             <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-            when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>   
-            <b>Price: </b> $ 200.00 
+            {{$product->description}} </p>   
+            <b>Price: </b> $ {{$product->price}}.00 
             <div class="row">
                 <div class="col-sm-8">
                     <div class="card">
@@ -73,7 +71,7 @@
                             <table class="table">
                                 <tr>
                                     <td>Seller's Name</td>
-                                    <td>Mark Walberg</td>
+                                    <td>{{$product->user->name}}</td>
                                 </tr>
                                 <tr>
                                     <td>From</td>
@@ -81,7 +79,7 @@
                                 </tr>
                                 <tr>
                                     <td>Ad Posted on</td>
-                                    <td>May 01, 2021</td>
+                                    <td>{{$product->created_at}}</td>
                                 </tr>
                                 <tr>
                                     <td>Expiry on</td>
