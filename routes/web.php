@@ -24,8 +24,8 @@ Route::get('/mobiles', 'ProductController@mobiles')->name('mobiles');
 Route::get('/contact', 'ProductController@index')->name('contact');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/newad', 'ProfileController@new_ad')->name('addproduct');
+Route::get('/search', 'HomeController@search')->name('search');
 
 Route::resource('category', 'CategoryController');
 Route::resource('product', 'ProductController');
 Route::resource('sales', 'SalesController');
-
