@@ -42,6 +42,8 @@
         <div class="col-sm-12 col-md-3 col-lg-3" >
             <h5 style="padding-top:10px; margin-top:20px;"> Search Products</h5>
             <hr>
+            <form action="{{route('search')}}" method="get">
+            @csrf
             <div style="border-right:1px solid #ccc; padding-right:10px">
                 <div class="form-group">
                     <h6>Price</h6>
@@ -80,18 +82,18 @@
                 <div class="form-group" >
                     <button type="submit" class="btn btn-block btn-primary bg-dark"> Submit </button>
                 </div>
-
+                </form>
             </div>
         </div>
         <div class="col-sm-9">
-            <h5 style="padding-top:10px; margin-top:20px;"> Search Results</h5>
+            <h5 style="padding-top:10px; margin-top:20px;"> {{$title}}</h5>
             <hr>
             <?php if(count($products)>0){?>
             <?php foreach($products as $product){?>
                 <div class="row" style="padding-bottom:10px">
 
                     <div class="col-sm-4">
-                        <img src="{{url('uploads/'.$product->image)}}" style="width:100%">
+                        <img src="{{url('public/uploads/'.$product->image)}}" style="width:100%">
                         <hr>
                         <?php 
                             $today = new DateTime(date('Y-m-d'));
